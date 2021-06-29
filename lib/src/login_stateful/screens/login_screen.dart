@@ -11,8 +11,8 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> with ValidationMixin {
   final formKey = GlobalKey<FormState>();
 
-  String email = '';
-  String password = '';
+  String? email = '';
+  String? password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
         hintText: 'you@example.com',
       ),
       validator: validateEmail,
-      onSaved: (String value) {
+      onSaved: (String? value) {
         email = value;
       },
     );
@@ -52,7 +52,7 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
       obscuringCharacter: '*',
       decoration: InputDecoration(labelText: 'Password', hintText: 'Password'),
       validator: validatePassword,
-      onSaved: (String value) {
+      onSaved: (String? value) {
         password = value;
       },
     );
@@ -65,9 +65,9 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
       ),
       child: Text('Submit'),
       onPressed: () {
-        var isValid = formKey.currentState.validate();
+        var isValid = formKey.currentState?.validate() ?? false;
         if (isValid) {
-          formKey.currentState.save();
+          formKey.currentState?.save();
           print('Time to post $email and $password to api');
         }
       },

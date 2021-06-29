@@ -9,10 +9,10 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> with TickerProviderStateMixin {
-  Animation<double> catAnimation;
-  AnimationController catController;
-  Animation<double> boxAnimation;
-  AnimationController boxController;
+  late Animation<double> catAnimation;
+  late AnimationController catController;
+  late Animation<double> boxAnimation;
+  late AnimationController boxController;
 
   @override
   void initState() {
@@ -83,7 +83,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       animation: catAnimation,
       builder: (context, child) {
         return Positioned(
-          child: child,
+          child: child!,
           top: catAnimation.value,
           right: 0,
           left: 0,

@@ -1,13 +1,15 @@
-import 'package:learn/src/news/resources/repository.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-import 'package:path/path.dart';
 import 'dart:async';
+import 'dart:io';
+
+import 'package:learn/src/news/resources/repository.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
+
 import '../models/item_model.dart';
 
 class NewsDbProvider implements Source, Cache {
-  Database db;
+  late Database db;
 
   NewsDbProvider() {
     init();
@@ -42,11 +44,10 @@ class NewsDbProvider implements Source, Cache {
     );
   }
 
-
   @override
   Future<List<int>> fetchTopIds() {
     // todo: store and fetch top ids
-    return null;
+    return Future.value(null);
   }
 
   @override
@@ -60,7 +61,7 @@ class NewsDbProvider implements Source, Cache {
     if (maps.length > 0) {
       return ItemModel.fromDb(maps.first);
     }
-    return null;
+    return Future.value(null);
   }
 
   @override
