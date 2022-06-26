@@ -68,6 +68,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     );
   }
 
+  @override
+  void dispose() {
+    boxController.dispose();
+    catController.dispose();
+    super.dispose();
+  }
+
   void onTap() {
     if (catController.status == AnimationStatus.completed) {
       boxController.forward();
